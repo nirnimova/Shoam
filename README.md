@@ -6,14 +6,14 @@
 This is the system I am currently developing for 
 ###### Israel Ports Development and Assets Company
 
-It was built with:
+**It was built with:**
 ###### ► Angular 8 / Typescript / RxJS
 ###### ► JavaScript / jQuery
 ###### ► DataTables / Sweetalert 2
 ###### ► CSS / LESS / Bootstrap, HTML
 ###### ► Git / SourceTree
 
-On the backend:
+**On the backend:**
 ###### ► C# / WCF / ASP.NET Web API
 ###### ► IIS
 ###### ► Entity Framework
