@@ -1,6 +1,8 @@
 # Shoam Mail / SMS Client
 ![Image](src/shared/images/Logo-en.png)
 
+**This is only client side code of the project!!!!!**
+
 This is the system I am currently developing for 
 ######Israel Ports Development and Assets Company
 
@@ -21,4 +23,4 @@ On the backend:
 ► Windows Powershell
 
 ![Image](src/shared/images/Screenshot_1.png)
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of Yaktocat](https://octodex.github.com/images/baracktocat.jpg)
