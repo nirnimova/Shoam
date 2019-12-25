@@ -1,0 +1,36 @@
+<h6>{{data.subject}}</h6>
+<div class="container">
+    <pre>{{data.body}}</pre>
+</div>
+<div class="container">
+    <label id="recipientsLabel" for="recipientsInput">Recipients: </label>
+    <span class="emailInput">
+        <ng-container *ngFor="let rec of data.recipients">
+            <ng-container *ngIf="rec.indexOf('@') != -1; else phoneContainer">
+                <a href="mailto:{{rec}}">{{rec}};</a>
+            </ng-container>
+            <ng-template #phoneContainer>
+                <a href="tel:{{rec}}">{{rec}};</a>
+            </ng-template>
+        </ng-container>
+    </span>
+</div>
+<div [hidden]="!data.cc" class="container">
+    <label id="ccLabel" for="ccInput">CC: </label>
+    <span class="ccInput">
+        <ng-container *ngFor="let cc of data.cc"><a href="mailto:{{cc}}">{{cc}};</a></ng-container>
+    </span>
+</div>
+<div [hidden]="!data.bcc" class="container">
+    <label id="bccLabel" for="bccInput">BCC: </label>
+    <span class="bccInput">
+        <ng-container *ngFor="let bcc of data.bcc"><a href="mailto:{{bcc}}">{{bcc}};</a></ng-container>
+    </span>
+</div>
+<div [hidden]="!data.attachments">
+    <label id="attachmentsLabel" for="bccInput">Attachments: </label>
+    <ul *ngFor="let att of data.attachments">
+        <!-- Nir: TEMP -->
+        <li><a href="http://www.google.com">{{att.filename}}</a></li>
+    </ul>
+</div>

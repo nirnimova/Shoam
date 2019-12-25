@@ -1,0 +1,411 @@
+<div class="menu">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 702px;">
+        <ul class="list" style="overflow: hidden; width: auto; height: 702px;">
+            <li class="header">MAIN NAVIGATION</li>
+            <li>
+                <a href="../index.html" class=" waves-effect waves-block">
+                    <i class="material-icons">home</i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a [swal]="smsSwal" class="toggled waves-effect waves-block">
+                    <i class="material-icons">phone_iphone</i>
+                    <span>SMS</span>
+                </a>
+                <swal #smsSwal title="<img src='shared/images/Logo-en-part.png' style='z-index: -1;' />"
+                    backdrop="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(93,67,177,0.184) 100%)"
+                    background="rgba(93,67,177,0.184)" showCancelButton="true" [preConfirm]="smsDialog.swalPreConfirm"
+                    (confirm)="createSMS()" (cancel)="cancelSMS()">
+                    <form *swalPortal>
+                        <div>
+                            <label>Sender:</label>
+                        </div>
+                        <div class='container'>
+                            <input id="sender" type="text" [formControl]="smsDialogFormControls.sender" />
+                        </div>
+                        <div class='container'>
+                            <label>Body:</label>
+                        </div>
+                        <div class='container'>
+                            <textarea cols="30" rows="10" [formControl]="smsDialogFormControls.body"></textarea>
+                        </div>
+                        <div class='container'>
+                            <label>Recipients:</label>
+                            <ul *ngFor="let rcpt of smsRecipients">
+                                <li style="display: block;">{{rcpt}}</li>
+                            </ul>
+                        </div>
+                        <div class='container'>
+                            <input #newRecipient id="newRecipient" type="text" />
+                            <button id="addNewRecipient_btn" class="btn" value="test"
+                                [disabled]="newRecipient.value.length < 11"
+                                (click)="smsDialog.addNewRecipient(newRecipient.value)">
+                                <i class="material-icons">plus_one</i>
+                            </button>
+                        </div>
+                    </form>
+                    <ng-container *swalPortal="swalTargets.confirmButton">
+                        Create SMS !
+                    </ng-container>
+                </swal>
+            </li>
+            <li>
+                <a [swal]="mailSwal" class="toggled waves-effect waves-block">
+                    <i class="material-icons">mail</i>
+                    <span>Mail</span>
+                </a>
+                <swal #mailSwal title="<img src='shared/images/Logo-en-part.png' style='z-index: -1;' />"
+                    backdrop="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(93,67,177,0.184) 100%)"
+                    background="rgba(93,67,177,0.184)" showCancelButton="true" [preConfirm]="mailDialog.swalPreConfirm"
+                    (confirm)="createMail()" (cancel)="cancelMail()">
+                    <form *swalPortal>
+                        <div>
+                            <label>Sender:</label>
+                        </div>
+                        <div class='container'>
+                            <input id="sender" type="text" [formControl]="mailDialogFormControls.sender" />
+                        </div>
+                        <div>
+                            <label>Subject:</label>
+                        </div>
+                        <div class='container'>
+                            <input id="subject" type="text" [formControl]="mailDialogFormControls.subject" />
+                        </div>
+                        <div class='container'>
+                            <label>Body:</label>
+                        </div>
+                        <div class='container'>
+                            <textarea cols="30" rows="10" [formControl]="mailDialogFormControls.body"></textarea>
+                        </div>
+                        <div class='container'>
+                            <label>Recipients:</label>
+                            <ul *ngFor="let rcpt of mailRecipients">
+                                <li style="display: block;">{{rcpt}}</li>
+                            </ul>
+                        </div>
+                        <div class='container'>
+                            <input #newRecipient id="newRecipient" type="text" />
+                            <button id="addNewRecipient_btn" class="btn" value="test"
+                                [disabled]="newRecipient.value.indexOf('@') === -1 || newRecipient.value.indexOf('.') === -1"
+                                (click)="mailDialog.addNewRecipient(newRecipient.value)">
+                                <i class="material-icons">plus_one</i>
+                            </button>
+                        </div>
+                    </form>
+                    <!-- <ng-container *swalPortal="swalTargets.confirmButton">
+                        Create Mail !
+                    </ng-container> -->
+                </swal>
+                <swal #mailCCSwal title="<img src='shared/images/Logo-en-part.png' style='z-index: -1;' />"
+                    backdrop="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(93,67,177,0.184) 100%)"
+                    background="rgba(93,67,177,0.184)" showCancelButton="true" (cancel)="cancelMail()">
+                    <form *swalPortal>
+                        <div class='container'>
+                            <label>CC:</label>
+                            <ul *ngFor="let cc of mailCC">
+                                <li style="display: block;">{{cc}}</li>
+                            </ul>
+                        </div>
+                        <div class='container'>
+                            <input #newCC id="newCC" type="text" />
+                            <button id="addNewCC_btn" class="btn" value="test"
+                                [disabled]="newCC.value.indexOf('@') === -1 || newCC.value.indexOf('.') === -1"
+                                (click)="mailDialog.addNewCC(newCC.value)">
+                                <i class="material-icons">plus_one</i>
+                            </button>
+                        </div>
+                        <div class='container'>
+                            <label>BCC:</label>
+                            <ul *ngFor="let bcc of mailBCC">
+                                <li style="display: block;">{{bcc}}</li>
+                            </ul>
+                        </div>
+                        <div class='container'>
+                            <input #newBCC id="newBCC" type="text" />
+                            <button id="addNewBCC_btn" class="btn" value="test"
+                                [disabled]="newBCC.value.indexOf('@') === -1 || newBCC.value.indexOf('.') === -1"
+                                (click)="mailDialog.addNewBCC(newBCC.value)">
+                                <i class="material-icons">plus_one</i>
+                            </button>
+                        </div>
+                    </form>
+                    <ng-container *swalPortal="swalTargets.confirmButton">
+                        Create Mail !
+                    </ng-container>
+                </swal>
+            </li>
+            <!-- <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">widgets</i>
+                    <span>Widgets</span>
+                </a>
+                <ul class="ml-menu" style="display: none;">
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                            <span>Cards</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="../pages/widgets/cards/basic.html" class=" waves-effect waves-block">Basic</a>
+                            </li>
+                            <li>
+                                <a href="../pages/widgets/cards/colored.html"
+                                    class=" waves-effect waves-block">Colored</a>
+                            </li>
+                            <li>
+                                <a href="../pages/widgets/cards/no-header.html" class=" waves-effect waves-block">No
+                                    Header</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                            <span>Infobox</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="../pages/widgets/infobox/infobox-1.html"
+                                    class=" waves-effect waves-block">Infobox-1</a>
+                            </li>
+                            <li>
+                                <a href="../pages/widgets/infobox/infobox-2.html"
+                                    class=" waves-effect waves-block">Infobox-2</a>
+                            </li>
+                            <li>
+                                <a href="../pages/widgets/infobox/infobox-3.html"
+                                    class=" waves-effect waves-block">Infobox-3</a>
+                            </li>
+                            <li>
+                                <a href="../pages/widgets/infobox/infobox-4.html"
+                                    class=" waves-effect waves-block">Infobox-4</a>
+                            </li>
+                            <li>
+                                <a href="../pages/widgets/infobox/infobox-5.html"
+                                    class=" waves-effect waves-block">Infobox-5</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">swap_calls</i>
+                    <span>User Interface (UI)</span>
+                </a>
+                <ul class="ml-menu" style="display: none;">
+                    <li>
+                        <a href="../pages/ui/alerts.html" class=" waves-effect waves-block">Alerts</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/animations.html" class=" waves-effect waves-block">Animations</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/badges.html" class=" waves-effect waves-block">Badges</a>
+                    </li>
+
+                    <li>
+                        <a href="../pages/ui/breadcrumbs.html" class=" waves-effect waves-block">Breadcrumbs</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/buttons.html" class=" waves-effect waves-block">Buttons</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/collapse.html" class=" waves-effect waves-block">Collapse</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/colors.html" class=" waves-effect waves-block">Colors</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/dialogs.html" class=" waves-effect waves-block">Dialogs</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/icons.html" class=" waves-effect waves-block">Icons</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/labels.html" class=" waves-effect waves-block">Labels</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/list-group.html" class=" waves-effect waves-block">List Group</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/media-object.html" class=" waves-effect waves-block">Media Object</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/modals.html" class=" waves-effect waves-block">Modals</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/notifications.html" class=" waves-effect waves-block">Notifications</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/pagination.html" class=" waves-effect waves-block">Pagination</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/preloaders.html" class=" waves-effect waves-block">Preloaders</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/progressbars.html" class=" waves-effect waves-block">Progress Bars</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/range-sliders.html" class=" waves-effect waves-block">Range Sliders</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/sortable-nestable.html" class=" waves-effect waves-block">Sortable &amp;
+                            Nestable</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/tabs.html" class=" waves-effect waves-block">Tabs</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/thumbnails.html" class=" waves-effect waves-block">Thumbnails</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/tooltips-popovers.html" class=" waves-effect waves-block">Tooltips &amp;
+                            Popovers</a>
+                    </li>
+                    <li>
+                        <a href="../pages/ui/waves.html" class=" waves-effect waves-block">Waves</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">assignment</i>
+                    <span>Forms</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href="../pages/forms/basic-form-elements.html" class=" waves-effect waves-block">Basic Form
+                            Elements</a>
+                    </li>
+                    <li>
+                        <a href="../pages/forms/advanced-form-elements.html" class=" waves-effect waves-block">Advanced
+                            Form Elements</a>
+                    </li>
+                    <li>
+                        <a href="../pages/forms/form-examples.html" class=" waves-effect waves-block">Form Examples</a>
+                    </li>
+                    <li>
+                        <a href="../pages/forms/form-validation.html" class=" waves-effect waves-block">Form
+                            Validation</a>
+                    </li>
+                    <li>
+                        <a href="../pages/forms/form-wizard.html" class=" waves-effect waves-block">Form Wizard</a>
+                    </li>
+                    <li>
+                        <a href="../pages/forms/editors.html" class=" waves-effect waves-block">Editors</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">view_list</i>
+                    <span>Tables</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href="../pages/tables/normal-tables.html" class=" waves-effect waves-block">Normal Tables</a>
+                    </li>
+                    <li>
+                        <a href="../pages/tables/jquery-datatable.html" class=" waves-effect waves-block">Jquery
+                            Datatables</a>
+                    </li>
+                    <li>
+                        <a href="../pages/tables/editable-table.html" class=" waves-effect waves-block">Editable
+                            Tables</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">perm_media</i>
+                    <span>Medias</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href="../pages/medias/image-gallery.html" class=" waves-effect waves-block">Image Gallery</a>
+                    </li>
+                    <li>
+                        <a href="../pages/medias/carousel.html" class=" waves-effect waves-block">Carousel</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">pie_chart</i>
+                    <span>Charts</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href="../pages/charts/morris.html" class=" waves-effect waves-block">Morris</a>
+                    </li>
+                    <li>
+                        <a href="../pages/charts/flot.html" class=" waves-effect waves-block">Flot</a>
+                    </li>
+                    <li>
+                        <a href="../pages/charts/chartjs.html" class=" waves-effect waves-block">ChartJS</a>
+                    </li>
+                    <li>
+                        <a href="../pages/charts/sparkline.html" class=" waves-effect waves-block">Sparkline</a>
+                    </li>
+                    <li>
+                        <a href="../pages/charts/jquery-knob.html" class=" waves-effect waves-block">Jquery Knob</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">content_copy</i>
+                    <span>Example Pages</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href="../pages/examples/profile.html" class=" waves-effect waves-block">Profile</a>
+                    </li>
+                    <li>
+                        <a href="../pages/examples/sign-in.html" class=" waves-effect waves-block">Sign In</a>
+                    </li>
+                    <li>
+                        <a href="../pages/examples/sign-up.html" class=" waves-effect waves-block">Sign Up</a>
+                    </li>
+                    <li>
+                        <a href="../pages/examples/forgot-password.html" class=" waves-effect waves-block">Forgot
+                            Password</a>
+                    </li>
+                    <li>
+                        <a href="../pages/examples/blank.html" class=" waves-effect waves-block">Blank Page</a>
+                    </li>
+                    <li>
+                        <a href="../pages/examples/404.html" class=" waves-effect waves-block">404 - Not Found</a>
+                    </li>
+                    <li>
+                        <a href="../pages/examples/500.html" class=" waves-effect waves-block">500 - Server Error</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">map</i>
+                    <span>Maps</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href="../pages/maps/google.html" class=" waves-effect waves-block">Google Map</a>
+                    </li>
+                    <li>
+                        <a href="../pages/maps/yandex.html" class=" waves-effect waves-block">YandexMap</a>
+                    </li>
+                    <li>
+                        <a href="../pages/maps/jvectormap.html" class=" waves-effect waves-block">jVectorMap</a>
+                    </li>
+                </ul>
+            </li> -->
+        </ul>
+        <div class="slimScrollBar"
+            style="background: rgba(0, 0, 0, 0.5); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 0px; z-index: 99; right: 1px; height: 529.897px;">
+        </div>
+        <div class="slimScrollRail"
+            style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,389 @@
+{
+  "messages": [
+    {
+      "id": "SomeId@1",
+      "date": "2016-10-31T00:00:00.000Z",
+      "sender": "nir@mail.com",
+      "recipients": [
+        "shiran@israports.co.il",
+        "elie@israports.co.il"
+      ],
+      "cc": [
+        "cc1@israports.co.il",
+        "cc2@israports.co.il"
+      ],
+      "bcc": [
+        "bcc1@israports.co.il",
+        "bcc2@israports.co.il"
+      ],
+      "subject": "This is a subject",
+      "body": "This is a Message\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "attachment": "",
+      "status": "Success"
+    },
+    {
+      "id": "SomeId@2",
+      "date": "2016-10-31T00:00:00.000Z",
+      "sender": "052-800614",
+      "recipients": [
+        "058-888999",
+        "052-450450"
+      ],
+      "subject": "SMS Message",
+      "body": "This is a Message\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "attachment": "",
+      "status": "Failure"
+    },
+    {
+      "id": "s4K31yB",
+      "type": "SMS",
+      "date": "2019-12-25T06:29:51.937Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "rfdsaggsdg",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "Le8w7Al",
+      "type": "SMS",
+      "date": "2019-12-25T06:30:25.620Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "rfdsaggsdg",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "ooyG3i0",
+      "type": "SMS",
+      "date": "2019-12-25T06:32:58.780Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "dsgfadgasg",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "T-m7DL-",
+      "type": "SMS",
+      "date": "2019-12-25T06:33:23.763Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "sfsAfasf",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "NPdrnhB",
+      "type": "SMS",
+      "date": "2019-12-25T06:54:31.117Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "zdfasf",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "N4j-x5Q",
+      "type": "SMS",
+      "date": "2019-12-25T06:57:43.875Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "asdgg",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "FlYdQH6",
+      "type": "SMS",
+      "date": "2019-12-25T07:04:40.696Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "fdfdg",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "05J9crk",
+      "type": "EMAIL",
+      "date": "2019-12-25T07:45:37.076Z",
+      "sender": "nir@mm.com",
+      "recipients": [
+        "nir.nimova@gmail.com"
+      ],
+      "cc": [
+        "cc@cc.com"
+      ],
+      "bcc": [
+        "bcc@bcc.com"
+      ],
+      "subject": "This is a Mail",
+      "body": "",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "2uRSNxn",
+      "type": "EMAIL",
+      "date": "2019-12-25T07:46:51.715Z",
+      "sender": "nir@mm.com",
+      "recipients": [
+        "nir.nimova@gmail.com"
+      ],
+      "cc": [],
+      "bcc": [],
+      "subject": "c",
+      "body": "dsg",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "rHvkhgK",
+      "type": "SMS",
+      "date": "2019-12-25T07:50:10.790Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "nir sms",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "C9qSuwI",
+      "type": "SMS",
+      "date": "2019-12-25T08:43:49.863Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456",
+        "125514645666",
+        "1255143345666"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "adgfasdgasg",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "QAj9QAY",
+      "type": "SMS",
+      "date": "2019-12-25T09:07:22.996Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "edsfzdfds",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "tqtsILN",
+      "type": "SMS",
+      "date": "2019-12-25T09:08:05.073Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "asdasd",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "2q256_j",
+      "type": "SMS",
+      "date": "2019-12-25T09:09:31.313Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "asdas",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "xW7z6QA",
+      "type": "SMS",
+      "date": "2019-12-25T09:48:21.790Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "asdasfgasf",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "8r_KfLg",
+      "type": "SMS",
+      "date": "2019-12-25T10:45:11.168Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "salkjdnfalkjsdnfkl",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "UavGdWH",
+      "type": "SMS",
+      "date": "2019-12-25T10:45:56.262Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "dfzdfbbadfsfb",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "ra03PDt",
+      "type": "SMS",
+      "date": "2019-12-25T10:46:43.564Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "fhgjfgjfgxjfxghj",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "1u1iP6P",
+      "type": "SMS",
+      "date": "2019-12-25T10:48:00.444Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "adfasfascxsaxxxx",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "OOQ2ILP",
+      "type": "SMS",
+      "date": "2019-12-25T10:52:05.239Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "dfasdsfas",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "MfFIi1E",
+      "type": "SMS",
+      "date": "2019-12-25T10:52:26.174Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "asdasdas",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "8wdQaYW",
+      "type": "SMS",
+      "date": "2019-12-25T10:52:44.324Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "afsfas",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "CBVdZ7Y",
+      "type": "SMS",
+      "date": "2019-12-25T10:54:57.841Z",
+      "sender": "05448111547",
+      "recipients": [
+        "125514546456"
+      ],
+      "cc": null,
+      "bcc": null,
+      "subject": "SMS Message",
+      "body": "sadgsadg",
+      "attachments": null,
+      "status": "In Progress"
+    }
+  ]
+}

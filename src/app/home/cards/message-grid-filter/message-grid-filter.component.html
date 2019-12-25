@@ -1,0 +1,26 @@
+<div class="card" style="width: 30vw;height: 15vh;">
+    <div class="date-area">
+        <div>
+            <label for="fromDate">From:</label>
+            <input #fromDate="ngModel" [(ngModel)]="todayFrom" id="fromDate" (change)="this.homeService.setFrom(fromDate.model)" type="datetime-local">
+        </div>
+        <div>
+            <label for="toDate">To:</label>
+            <input #toDate="ngModel" id="toDate" [(ngModel)]="todayTo" (change)="this.homeService.setTo(toDate.model)" type="datetime-local">
+        </div>
+    </div>
+    <div class="text-area">
+        <label for="senderText">Sender:</label>
+        <input #senderText type="text" id="senderText">
+        <label for="subjectText">Subject:</label>
+        <input #subjectText type="text" id="subjectText">
+    </div>
+    <div class="CB-area">
+        <input #mailCB type="checkbox" id="checkMail">
+        <label for="checkMail">Mail</label>
+        <input #smsCB type="checkbox" id="checkSMS">
+        <label for="checkSMS">SMS</label>
+        <input #failedCB type="checkbox" id="checkFailed">
+        <label for="checkFailed">Failed</label>
+    </div>
+</div>
