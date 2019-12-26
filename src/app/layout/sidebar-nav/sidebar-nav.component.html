@@ -32,17 +32,16 @@
                         </div>
                         <div class='container'>
                             <label>Recipients:</label>
-                            <ul *ngFor="let rcpt of smsRecipients">
-                                <li style="display: block;">{{rcpt}}</li>
-                            </ul>
-                        </div>
-                        <div class='container'>
                             <input #newRecipient id="newRecipient" type="text" />
-                            <button id="addNewRecipient_btn" class="btn" value="test"
+                            <button id="addNewRecipient_btn" class="btn" 
                                 [disabled]="newRecipient.value.length < 11"
                                 (click)="smsDialog.addNewRecipient(newRecipient.value)">
                                 <i class="material-icons">plus_one</i>
                             </button>
+                        </div>
+                        <hr>
+                        <div class='container' *ngFor="let rcpt of smsRecipients">
+                            {{rcpt}}
                         </div>
                     </form>
                     <ng-container *swalPortal="swalTargets.confirmButton">
@@ -58,7 +57,7 @@
                 <swal #mailSwal title="<img src='shared/images/Logo-en-part.png' style='z-index: -1;' />"
                     backdrop="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(93,67,177,0.184) 100%)"
                     background="rgba(93,67,177,0.184)" showCancelButton="true" [preConfirm]="mailDialog.swalPreConfirm"
-                    (confirm)="createMail()" (cancel)="cancelMail()">
+                    (confirm)="createMail(files)" (cancel)="cancelMail()">
                     <form *swalPortal>
                         <div>
                             <label>Sender:</label>
@@ -80,54 +79,58 @@
                         </div>
                         <div class='container'>
                             <label>Recipients:</label>
-                            <ul *ngFor="let rcpt of mailRecipients">
-                                <li style="display: block;">{{rcpt}}</li>
-                            </ul>
-                        </div>
-                        <div class='container'>
                             <input #newRecipient id="newRecipient" type="text" />
-                            <button id="addNewRecipient_btn" class="btn" value="test"
+                            <button id="addNewRecipient_btn" class="btn" 
                                 [disabled]="newRecipient.value.indexOf('@') === -1 || newRecipient.value.indexOf('.') === -1"
                                 (click)="mailDialog.addNewRecipient(newRecipient.value)">
                                 <i class="material-icons">plus_one</i>
                             </button>
                         </div>
+                        <hr>
+                        <div class='container' *ngFor="let rcpt of mailRecipients">
+                            {{rcpt}}
+                        </div>
                     </form>
-                    <!-- <ng-container *swalPortal="swalTargets.confirmButton">
-                        Create Mail !
-                    </ng-container> -->
                 </swal>
                 <swal #mailCCSwal title="<img src='shared/images/Logo-en-part.png' style='z-index: -1;' />"
                     backdrop="radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(93,67,177,0.184) 100%)"
                     background="rgba(93,67,177,0.184)" showCancelButton="true" (cancel)="cancelMail()">
                     <form *swalPortal>
                         <div class='container'>
-                            <label>CC:</label>
-                            <ul *ngFor="let cc of mailCC">
-                                <li style="display: block;">{{cc}}</li>
-                            </ul>
-                        </div>
-                        <div class='container'>
+                            <label>&nbsp;&nbsp;CC:</label>
                             <input #newCC id="newCC" type="text" />
-                            <button id="addNewCC_btn" class="btn" value="test"
+                            <button id="addNewCC_btn" class="btn" 
                                 [disabled]="newCC.value.indexOf('@') === -1 || newCC.value.indexOf('.') === -1"
                                 (click)="mailDialog.addNewCC(newCC.value)">
                                 <i class="material-icons">plus_one</i>
                             </button>
                         </div>
-                        <div class='container'>
-                            <label>BCC:</label>
-                            <ul *ngFor="let bcc of mailBCC">
-                                <li style="display: block;">{{bcc}}</li>
-                            </ul>
+                        <hr>
+                        <div class='container' *ngFor="let cc of mailCC">
+                            {{cc}}
                         </div>
                         <div class='container'>
+                            <label>BCC:</label>
                             <input #newBCC id="newBCC" type="text" />
-                            <button id="addNewBCC_btn" class="btn" value="test"
+                            <button id="addNewBCC_btn" class="btn" 
                                 [disabled]="newBCC.value.indexOf('@') === -1 || newBCC.value.indexOf('.') === -1"
                                 (click)="mailDialog.addNewBCC(newBCC.value)">
                                 <i class="material-icons">plus_one</i>
                             </button>
+                        </div>
+                        <hr>
+                        <div class='container' *ngFor="let bcc of mailBCC">
+                            {{bcc}}
+                        </div>
+                        <div class='container'>
+                            <div class="upload-btn-wrapper">
+                                <button id="files-btn" class="btn">Upload Files</button>
+                                <input #files id="files" type="file" multiple>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class='container' *ngFor="let file of files.files">
+                            {{file.name}}
                         </div>
                     </form>
                     <ng-container *swalPortal="swalTargets.confirmButton">

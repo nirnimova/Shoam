@@ -1,6 +1,6 @@
 import { MessagesService } from './../../services/messages.service';
 import { Message } from 'src/app/models/message.model';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import 'sweetalert2'
 import { SwalPortalTargets, SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import * as Waves from 'node-waves';
@@ -107,6 +107,7 @@ export class SidebarNavComponent implements OnInit {
   }
 
   @ViewChild('mailCCSwal', null) private mailCCSwal: SwalComponent;
+  @ViewChild('files', null) private files: ElementRef
 
   ngOnInit() {
     var wavesConfig = {
@@ -130,14 +131,6 @@ export class SidebarNavComponent implements OnInit {
       smsDialogFormControls.body.value,
       null, // @@ TODO
       'In Progress'
-    );
-
-    //@@ Nir TEMP
-    let data = asFormData(JSON.parse(JSON.stringify(message)));
-    this.messagesService.Test(data).subscribe(
-      () => alert('success'),
-      () => alert('failure'),
-      () => alert('complete')
     );
 
     // this.messagesService.CreateMessage(message).subscribe(
@@ -164,6 +157,21 @@ export class SidebarNavComponent implements OnInit {
         null, // @@ TODO
         'In Progress'
       );
+
+      //@@ Nir TEMP
+      // let data = asFormData(JSON.parse(JSON.stringify(message)));
+
+      // let uploadedFiles = (<HTMLInputElement>this.files.nativeElement).files;
+
+      // for (let i = 0; i < uploadedFiles.length; i++){
+      //   data.append(i.toString(), uploadedFiles[i]);
+      // }
+
+      // this.messagesService.Test(data).subscribe(
+      //   () => alert('success'),
+      //   () => alert('failure'),
+      //   () => alert('complete')
+      // );
 
       this.messagesService.CreateMessage(message).subscribe(
         () => Swal.fire('Success', 'Message Created Successfully', 'success'),

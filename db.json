@@ -384,6 +384,19 @@
       "body": "sadgsadg",
       "attachments": null,
       "status": "In Progress"
+    },
+    {
+      "id": "mDTvNNb",
+      "type": "SMS",
+      "date": "2019-12-25T12:45:28.603Z",
+      "sender": "",
+      "recipients": [],
+      "cc": [],
+      "bcc": [],
+      "subject": "asd",
+      "body": "",
+      "attachments": null,
+      "status": "In Progress"
     }
   ]
 }

@@ -39,13 +39,14 @@ export class MessagesService {
     )
   }  
 
-  Test(formData: FormData): Observable<any> {
-    return this.http.post('https://localhost:44304/api/Test/NirTestFileUpload', formData)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
-  }
+  //@@ Nir: TEMP
+  // Test(formData: FormData): Observable<any> {
+  //   return this.http.post('https://localhost:44304/api/Test/NirTestFileUpload', formData)
+  //   .pipe(
+  //     retry(1),
+  //     catchError(this.errorHandl)
+  //   )
+  // }
 
   // Error handling
   errorHandl(error) {
