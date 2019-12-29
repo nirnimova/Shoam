@@ -4,10 +4,13 @@ import { Model, ModelFactory } from '@angular-extensions/model';
 import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 import { homeData } from '../interfaces/homeData.interface';
+import { realtime } from '../models/realtime/realtime.model';
+import { WebsocketService } from './websocket.service';
 
 const initialData: homeData = {
   messageRefreshRate: 60000,
-  messageFilter: new MessageGridFilter()
+  messageFilter: new MessageGridFilter(),
+  realtimeData: new realtime()
 }
 
 @Injectable({
@@ -20,10 +23,25 @@ export class HomeService {
 
   constructor(
     private modelFactory: ModelFactory<homeData>,
-    private storageService: StorageService
+    private storageService: StorageService,
+    wsService: WebsocketService
   ) {
     this.model = this.modelFactory.create(initialData);
     this.homeData$ = this.model.data$;
+
+    wsService.connect('ws://localhost:8181').subscribe(wsMsg => {
+      // console.log(wsMsg.data + ' NIR')
+
+      const hd = this.model.get();
+
+      // console.log(hd);
+
+      hd.realtimeData = <realtime>JSON.parse(wsMsg.data);
+
+      // console.log(hd);
+
+      this.model.set(hd);
+    })
   }
 
   setFrom(date: Date) {
@@ -81,7 +99,7 @@ export class HomeService {
 
   setFailed(filter: boolean) {
     const hd = this.model.get();
-    
+
     hd.messageFilter.failed = filter;
 
     this.storageService.storeOnLocalStorage(hd);
