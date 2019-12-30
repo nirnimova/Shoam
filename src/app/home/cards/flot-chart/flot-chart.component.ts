@@ -1,5 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { HomeService } from 'src/app/services/home.service';
+import { SizableChartQueue } from 'src/app/models/datastructures/custom/ds-sizable-chart-queue.model';
 declare var $: any;
+
+const successesQueue: SizableChartQueue = new SizableChartQueue(100, 0);
+const failureQueue: SizableChartQueue = new SizableChartQueue(100, 0);
 
 @Component({
   selector: 'home-card-flot-chart',
@@ -8,20 +13,10 @@ declare var $: any;
 })
 export class FlotChartComponent implements AfterViewInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  constructor(public homeService: HomeService) { }
 
   ngAfterViewInit(): void {
     $(function () {
-      initRealTimeChart();
-    });
-
-    let data = [], totalPoints = 110;
-    let data2 = [], totalPoints2 = 110;
-
-    function initRealTimeChart() {
       const plot = ($ as any).plot('#real_time_chart', [],
         {
           grid: {
@@ -39,9 +34,13 @@ export class FlotChartComponent implements AfterViewInit {
           }
         });
 
-      function updateRealTime() {
+      function setPlotData() {
+        if (typeof plot === 'undefined') {
+          return;
+        }
+
         plot.setData([{
-          data: getRandomData(),
+          data: successesQueue._store,
           shadowSize: 0,
           color: 'rgb(0, 0, 212)',
           lines: {
@@ -49,7 +48,7 @@ export class FlotChartComponent implements AfterViewInit {
           }
         },
         {
-          data: getRandomData2(),
+          data: failureQueue._store,
           shadowSize: 0,
           color: 'rgb(300, 100, 100)',
           lines: {
@@ -58,41 +57,22 @@ export class FlotChartComponent implements AfterViewInit {
         }]);
 
         let ticks = plot.getAxes().xaxis.options.showTicks = true;
-
         plot.setupGrid();
         plot.draw();
 
-        setTimeout(updateRealTime, 1000);
+        setTimeout(setPlotData, 5000);
       }
 
-      updateRealTime();
+      setPlotData();
+    });
 
-      function getRandomData() {
-        if (data.length > 0) data = data.slice(1);
+    //@@ Push to stack when data returned from server
+    this.homeService.homeData$.subscribe(hd => {
+      successesQueue.push(hd.realtimeData.msgStatus.successes);
+    });
 
-        while (data.length < totalPoints) {
-          var prev = data.length > 0 ? data[data.length - 1] : 50, y = prev + Math.random() * 10 - 5;
-          if (y < 0) { y = 0; } else if (y > 100) { y = 100; }
-
-          data.push(y);
-        }
-
-        var res = [];
-        for (var i = 0; i < data.length; ++i) {
-          res.push([i, data[i]]);
-        }
-
-        return res;
-      }
-
-      function getRandomData2() {
-        var res = [];
-        for (var i = 0; i < totalPoints2; ++i) {
-          res.push([i, Math.random() * 20]);
-        }
-
-        return res;
-      }
-    }
+    this.homeService.homeData$.subscribe(hd => {
+      failureQueue.push(hd.realtimeData.msgStatus.failures)
+    });
   }
 }

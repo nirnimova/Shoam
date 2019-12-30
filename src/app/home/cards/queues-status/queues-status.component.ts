@@ -7,6 +7,7 @@ import { HomeService } from 'src/app/services/home.service';
   templateUrl: './queues-status.component.html',
   styleUrls: ['./queues-status.component.less']
 })
+
 export class QueuesStatusComponent implements OnInit {
   private mailQueuePlayer: AnimationPlayer;
   private smsQueuePlayer: AnimationPlayer;

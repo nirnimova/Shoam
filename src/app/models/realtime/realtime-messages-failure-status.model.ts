@@ -1,4 +1,4 @@
 export class messagesFailureStatus {
-    successes: number;
-    failures: number;
+    successes: number = 0;
+    failures: number = 0;
 }
