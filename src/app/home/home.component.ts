@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import 'src/shared/snarl/snarl.js'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import 'src/shared/svg/plane.svg';
@@ -8,7 +8,8 @@ declare var Snarl: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  styleUrls: ['./home.component.less'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
   faGlobe = faGlobe;

@@ -1,6 +1,6 @@
 import { MessagesService } from './../../services/messages.service';
 import { Message } from 'src/app/models/message.model';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import 'sweetalert2'
 import { SwalPortalTargets, SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import * as Waves from 'node-waves';
@@ -10,7 +10,6 @@ import Swal from 'sweetalert2';
 import { MessageDialog } from '../../interfaces/MessageDialog.interface';
 import { MessageDialogFormControls } from 'src/app/interfaces/MessageDialogFormControls.interface';
 import { MessageGridService } from 'src/app/home/cards/message-grid/message-grid.service';
-import * as asFormData from 'json-form-data';
 
 //@@ SMS Dialog
 const smsRecipients = new Set<string>();
@@ -82,7 +81,8 @@ const mailDialog: MessageDialog = {
 @Component({
   selector: 'sidebar-nav',
   templateUrl: './sidebar-nav.component.html',
-  styleUrls: ['./sidebar-nav.component.less']
+  styleUrls: ['./sidebar-nav.component.less'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SidebarNavComponent implements OnInit {
   //@@ SMS Dialog
@@ -133,14 +133,14 @@ export class SidebarNavComponent implements OnInit {
       'In Progress'
     );
 
-    // this.messagesService.CreateMessage(message).subscribe(
-    //   () => Swal.fire('Success', 'Message Created Successfully', 'success'),
-    //   err => Swal.fire('Error', `Error Occured, Message Creation Failed: ${err.message}`),
-    //   () => {
-    //     this.cancelSMS();
-    //     this.messageGridService.refresh();
-    //   }
-    // );
+    this.messagesService.CreateMessage(message).subscribe(
+      () => Swal.fire('Success', 'Message Created Successfully', 'success'),
+      err => Swal.fire('Error', `Error Occured, Message Creation Failed: ${err.message}`),
+      () => {
+        this.cancelSMS();
+        this.messageGridService.refresh();
+      }
+    );
   }
 
   createMail() {

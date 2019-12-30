@@ -397,6 +397,36 @@
       "body": "",
       "attachments": null,
       "status": "In Progress"
+    },
+    {
+      "id": "DIynDOm",
+      "type": "SMS",
+      "date": "2019-12-30T13:56:29.241Z",
+      "sender": "",
+      "recipients": [],
+      "cc": [],
+      "bcc": [],
+      "subject": "asdasd",
+      "body": "",
+      "attachments": null,
+      "status": "In Progress"
+    },
+    {
+      "id": "G0szpfO",
+      "type": "EMAIL",
+      "date": "2019-12-30T13:57:14.282Z",
+      "sender": "sa@ss.com",
+      "recipients": [
+        "as@dffa.com"
+      ],
+      "cc": [
+        "asd@ggg.com"
+      ],
+      "bcc": [],
+      "subject": "asdasd",
+      "body": "adsfasfasf",
+      "attachments": null,
+      "status": "In Progress"
     }
   ]
 }
