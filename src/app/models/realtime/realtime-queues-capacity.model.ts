@@ -1,5 +1,5 @@
 export class queuesCapacity {
-    logQueue: number;
-    smsQueue: number;
-    mailQueue: number;
+    logQueue: number = 0;
+    smsQueue: number = 0;
+    mailQueue: number = 0;
 }

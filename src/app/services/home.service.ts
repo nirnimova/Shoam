@@ -30,15 +30,9 @@ export class HomeService {
     this.homeData$ = this.model.data$;
 
     wsService.connect('ws://localhost:8181').subscribe(wsMsg => {
-      // console.log(wsMsg.data + ' NIR')
-
       const hd = this.model.get();
 
-      // console.log(hd);
-
       hd.realtimeData = <realtime>JSON.parse(wsMsg.data);
-
-      // console.log(hd);
 
       this.model.set(hd);
     })
