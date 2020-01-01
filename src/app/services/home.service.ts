@@ -6,6 +6,7 @@ import { StorageService } from './storage.service';
 import { homeData } from '../interfaces/homeData.interface';
 import { realtime } from '../models/realtime/realtime.model';
 import { WebsocketService } from './websocket.service';
+import { messageNotification } from '../models/realtime/realtime-message-notification';
 
 const initialData: homeData = {
   messageRefreshRate: 60000,
@@ -33,6 +34,10 @@ export class HomeService {
       const hd = this.model.get();
 
       hd.realtimeData = <realtime>JSON.parse(wsMsg.data);
+
+      hd.realtimeData.msgNotifications = hd.realtimeData.msgNotifications.map(
+        msgNotif => new messageNotification(msgNotif.title, msgNotif.message, msgNotif.icon)
+      );
 
       this.model.set(hd);
     })
