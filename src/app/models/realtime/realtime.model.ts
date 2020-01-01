@@ -5,5 +5,5 @@ import { messageNotification } from './realtime-message-notification';
 export class realtime {
     queues: queuesCapacity = new queuesCapacity();
     msgStatus: messagesStatus = new messagesStatus();
-    msgNotifications: messageNotification[] = [];
+    msgNotifications?: messageNotification[] = [];
 }

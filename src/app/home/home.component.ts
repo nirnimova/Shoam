@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.homeService.homeData$.subscribe(hd => {
-      if (hd.realtimeData.msgNotifications.length === 0) {
+      if (hd.realtimeData.msgNotifications === null || hd.realtimeData.msgNotifications.length === 0) {
+        this.messageNotifications._store = [];
         return;
       }
 
@@ -32,6 +33,10 @@ export class HomeComponent implements OnInit {
 
     interval(10000)
       .subscribe(() => {
+        if (this.messageNotifications._store.length === 0){
+          return
+        }
+
         let notification = this.messageNotifications.pop();
 
         Snarl.addNotification({ title: notification.title, text: notification.message, icon: notification.icon });
