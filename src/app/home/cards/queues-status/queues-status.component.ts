@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { style, animate, AnimationBuilder, AnimationPlayer } from '@angular/animations'
 import { HomeService } from 'src/app/services/home.service';
 
@@ -18,8 +18,9 @@ export class QueuesStatusComponent implements OnInit {
   @ViewChild('logQueueProgressBar', null) logQueueProgressBar: ElementRef;
 
   constructor(
-    private animationBuilder: AnimationBuilder,
-    public homeService: HomeService
+    public homeService: HomeService,
+    private renderer: Renderer2,
+    private animationBuilder: AnimationBuilder
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +32,7 @@ export class QueuesStatusComponent implements OnInit {
   }
 
   createPlayer(player: AnimationPlayer, progressBar: HTMLInputElement, capacity: number) {
-    progressBar.innerText = `${capacity.toFixed()}%`;
+    this.renderer.setProperty(progressBar, 'innerText', `${capacity.toFixed()}%`);
 
     return this.animationBuilder
       .build([

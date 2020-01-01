@@ -1,6 +1,6 @@
 import { MessageGridService } from './../message-grid/message-grid.service';
 import { HomeService } from './../../../services/home.service';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { StorageService } from 'src/app/services/storage.service';
@@ -31,6 +31,7 @@ export class MessageGridFilterComponent implements OnInit, AfterViewInit {
 
   constructor(
     public homeService: HomeService,
+    private renderer: Renderer2,
     private messageGridService: MessageGridService,
     private storageService: StorageService
   ) {
@@ -72,27 +73,27 @@ export class MessageGridFilterComponent implements OnInit, AfterViewInit {
       }
 
       if (typeof mf.sender !== 'undefined') {
-        this.senderText.nativeElement.value = mf.sender;
+        this.renderer.setProperty(this.senderText.nativeElement, 'value', mf.sender);
         this.homeService.setSender(mf.sender);
       }
 
       if (typeof mf.subject !== 'undefined') {
-        this.subjectText.nativeElement.value = mf.subject;
+        this.renderer.setProperty(this.subjectText.nativeElement, 'value', mf.subject);
         this.homeService.setSubject(mf.subject);
       }
 
       if (typeof mf.mail !== 'undefined') {
-        this.mailCB.nativeElement.checked = mf.mail;
+        this.renderer.setProperty(this.mailCB.nativeElement, 'checked', mf.mail);
         this.homeService.setType('MAIL', mf.mail);
       }
 
       if (typeof mf.sms !== 'undefined') {
-        (<HTMLInputElement>this.smsCB.nativeElement).checked = mf.sms;
+        this.renderer.setProperty(this.smsCB.nativeElement, 'checked', mf.sms);
         this.homeService.setType('SMS', mf.sms);
       }
 
       if (typeof mf.failed !== 'undefined') {
-        (<HTMLInputElement>this.failedCB.nativeElement).checked = mf.failed;
+        this.renderer.setProperty(this.failedCB.nativeElement, 'checked', mf.failed);
         this.homeService.setFailed(mf.failed);
       }
     }
