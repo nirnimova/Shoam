@@ -3,7 +3,7 @@
 
 **This is only client side code of the project!!!!!**
 
-This is the system I am currently developing for 
+This is the system I developed for 
 ###### Israel Ports Development and Assets Company
 
 **It was built with:**
